@@ -1,12 +1,5 @@
 import os
-from flask import Flask
-
-app = Flask(__name__)
-
-@app.route('/', methods=['GET'])
-def index():
-    return '<h1>Hellow</h1>'
-
+from controllers.flask_context import app
 
 
 port = int(os.environ.get('PORT', 5000))
