@@ -1,1 +1,1 @@
-from .sales import Sales
+from .user import User
