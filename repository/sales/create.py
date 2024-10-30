@@ -1,11 +1,11 @@
-from models import Sales
+from models import User
 import peewee
 
 class Create:
-    def create(self, name='batata'):
+    def create(self, name=None, password=None):
         try:
-            Sales.create_table()
-            print("Tabela 'Sales' criada com sucesso!")
+            User.create_table()
+            print("Tabela 'User' criada com sucesso!")
         except peewee.OperationalError:
-            print("Tabela 'Author' ja existe!")
-        Sales.create(name=name)
+            print("Tabela 'User' ja existe!")
+        User.create(name=name, password=password)
