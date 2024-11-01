@@ -25,6 +25,13 @@ def index():
         model_user.password = form.password.data
         service_user.create(model_user)
     return render_template('index.html', title='Sign In', form=form)
+
+@app.route('/list_all', methods=['GET'])
+def list_all() -> str:
+    users = service_user.list_all()
+    return render_template('list_all.html', users=users)
+
+
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     app.run(port=port, debug=True)
