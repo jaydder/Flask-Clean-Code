@@ -14,3 +14,6 @@ class UserRepository:
     def list_all(self) -> list:
         query = User.select().execute()
         return query
+
+    def update(self, old_name: str ,user:User) -> None:
+        User.update(name=user.name, password=user.password).where(User.name == old_name).execute()

@@ -1,11 +1,8 @@
 import os
 from flask import Flask, render_template, request
-from flask.helpers import url_for
-from werkzeug.utils import redirect
-from db import db
 from models import User
 from service import UserService
-from form import LoginForm
+from form import LoginForm, UpdateForm
 
 
 class Config:
@@ -30,6 +27,16 @@ def index():
 def list_all() -> str:
     users = service_user.list_all()
     return render_template('list_all.html', users=users)
+
+@app.route('/update', methods=['GET', 'POST'])
+def update() -> str:
+    form = UpdateForm(request.form)
+    if request.method == 'POST':
+        model_user = User()
+        model_user.name = form.new_username.data
+        model_user.password = form.new_password.data
+        service_user.update(form.old_username.data ,model_user)
+    return render_template('update.html',  form=form)
 
 
 if __name__ == '__main__':

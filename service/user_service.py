@@ -9,3 +9,6 @@ class UserService:
 
     def list_all(self) -> list:
         return self.UserRepository.list_all()
+
+    def update(self, old_name: str ,user: User):
+        self.UserRepository.update(old_name, user)
