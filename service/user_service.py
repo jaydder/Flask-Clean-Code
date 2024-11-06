@@ -12,3 +12,6 @@ class UserService:
 
     def update(self, old_name: str ,user: User):
         self.UserRepository.update(old_name, user)
+
+    def delete(self, id):
+        self.UserRepository.delete(id)

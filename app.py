@@ -23,8 +23,11 @@ def index():
         service_user.create(model_user)
     return render_template('index.html', title='Sign In', form=form)
 
-@app.route('/list_all', methods=['GET'])
+@app.route('/list_all', methods=['GET', 'POST'])
 def list_all() -> str:
+    if request.method == 'POST':
+        user_delete = request.form['delete']
+        service_user.delete(user_delete)
     users = service_user.list_all()
     return render_template('list_all.html', users=users)
 
