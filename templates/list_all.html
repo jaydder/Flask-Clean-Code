@@ -12,7 +12,12 @@
                 <th>name</th>
                 <th>password</th>
             </tr>
+            {% if users|length == 0 %}
 
+            <tr>
+                <td colspan="3">No users found</td>
+            </tr>
+            {% endif %}
             {% for user in users %}
             <tr>
                 <td>{{ user.name }}</td>
