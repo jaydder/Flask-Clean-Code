@@ -3,12 +3,14 @@ from flask import Flask, render_template, request
 from models import User
 from service import UserService
 from form import LoginForm, UpdateForm
+from routes import user_page
 
 
 class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY')
 
 app = Flask(__name__)
+app.register_blueprint(user_page)
 app.config.from_object(Config)
 
 service_user = UserService()
